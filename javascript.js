@@ -1,5 +1,7 @@
 const grid = document.querySelector('#grid');
 
+const GRIDSIZE = 640;
+
 for (let i = 0; i < 16; i++) {
     const row = document.createElement('span');
     row.style.display = 'flex';
@@ -10,50 +12,17 @@ for (let i = 0; i < 16; i++) {
         
     }
     grid.appendChild(row);
-    row.firstChild.style.borderLeft = '4px solid black';
-    row.lastChild.style.borderRight = '4px solid black';
 }
 
-const drawDivs = document.querySelectorAll('#grid div');
-
-function draw(e) {
-    e.target.style.backgroundColor = 'chartreuse';
-}
-
-drawDivs.forEach(div => {
-    div.addEventListener('mouseenter', draw);
-    div.addEventListener('click', stopDraw);
-})
-
-function clear() {
-    drawDivs.forEach(div => {
-        div.addEventListener('mouseenter', draw);
-    })
-    drawDivs.forEach(div => {
-        div.style.backgroundColor = '';
-    })
-}
-
-function stopDraw() {
-    drawDivs.forEach(div => {
-        div.removeEventListener('mouseenter', draw);
-    });
-}
-
-const clearButton = document.querySelector('#clear');
-
-clearButton.addEventListener('click', clear);
-
-const userSizeButton = document.querySelector('#userSize');
-
-userSize.addEventListener('click', drawGrid);
-
-const testdiv = document.querySelector('#testdiv');
+makeDraw();
 
 function drawGrid() {
 
-    const size = prompt('Enter a grid size.');
+    const size = prompt('Enter a grid size 1-100.');
     
+    while (grid.firstChild) {
+        grid.removeChild(grid.lastChild);
+    }
     
     for (let i = 0; i < size; i++) {
         const row = document.createElement('span');
@@ -62,11 +31,62 @@ function drawGrid() {
         for (let j = 0; j < size; j++) {
             const cell = document.createElement('div');
             cell.style.border = '1px solid black';
-            cell.style.height = 640 / size + 'px';
-            cell.style.width = 640 / size + 'px';
+            cell.style.height = GRIDSIZE / size + 'px';
+            cell.style.width = GRIDSIZE / size + 'px';
             row.appendChild(cell);
         }
-        testdiv.appendChild(row);
+        
+        grid.appendChild(row);
     }
+
+    makeDraw();
+}
+
+function makeDraw() {
+
+    const drawDivs = document.querySelectorAll('#grid div');
+
+    drawDivs.forEach(div => {
+        div.setAttribute('class', 'drawOn');
+        div.addEventListener('mouseenter', draw);
+        div.addEventListener('click', toggleDraw);
+    });
+
+    function draw(e) {
+        if (e.target.classList.contains('drawOn')) {
+            e.target.style.backgroundColor = 'chartreuse';
+        }
+    }
+    
+    function clear() {
+        drawDivs.forEach(div => {
+            div.addEventListener('mouseenter', draw);
+            div.setAttribute('class', 'drawOn');
+            div.style.backgroundColor = '';
+        })
+    }
+    
+    function toggleDraw(e) {
+        if (e.target.classList.contains('drawOn')) {
+            drawDivs.forEach(div => {
+                div.classList.remove('drawOn');
+                div.setAttribute('class', 'drawOff');
+            });
+        } else {
+            drawDivs.forEach(div => {
+                div.classList.remove('drawOff');
+                div.setAttribute('class', 'drawOn');
+            });
+        }
+        draw(e);
+    }
+    
+    const clearButton = document.querySelector('#clear');
+    
+    clearButton.addEventListener('click', clear);
+    
+    const userSizeButton = document.querySelector('#userSize');
+    
+    userSize.addEventListener('click', drawGrid);
 }
 

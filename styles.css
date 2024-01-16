@@ -3,7 +3,7 @@
 }
 
 #grid div {
-    border: 2px solid black;
+    border: 1px solid black;
     height: 40px;
     width: 40px;
 }
@@ -15,11 +15,5 @@
 
 #clear {
     margin-top: 30px;
-}
-
-#testdiv {
-    width: 640px;
-    height: 640px;
-    
 }
 
