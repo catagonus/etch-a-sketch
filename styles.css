@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+#grid div {
+    border: 2px solid black;
+    height: 40px;
+    width: 40px;
+}
+
+#userSize {
+    margin-bottom: 30px;
+    float: right;
+}
+
+#clear {
+    margin-top: 30px;
+}
+
+#testdiv {
+    width: 640px;
+    height: 640px;
+    
+}
+
