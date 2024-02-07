@@ -22,6 +22,7 @@ function drawGrid(size) {
             cell.classList.add('drawdiv');
             cell.style.height = GRIDSIZE / size + 'px';
             cell.style.width = GRIDSIZE / size + 'px';
+            cell.style.backgroundColor = `rgba(${0}, ${0}, ${0}, ${0.0})`;
             row.appendChild(cell);
         }
         grid.appendChild(row);
@@ -39,20 +40,32 @@ function draw(e) {
     if (drawToggle === 'on') {
         switch(drawMode) {
             case 'blackink':
-                e.target.style.backgroundColor = 'black';
+                e.target.style.backgroundColor = `rgba(${0}, ${0}, ${0}, ${1.0})`;
                 break;
             case 'redink':
-                e.target.style.backgroundColor = 'red';
+                e.target.style.backgroundColor = `rgba(${255}, ${0}, ${0}, ${1.0})`;
                 break;
             case 'greenink':                
-                e.target.style.backgroundColor = 'chartreuse';
+                e.target.style.backgroundColor = `rgba(${0}, ${255}, ${0}, ${1.0})`;
                 break;
             case 'blueink':                
-                e.target.style.backgroundColor = 'blue';
+                e.target.style.backgroundColor = `rgba(${0}, ${0}, ${255}, ${1.0})`;
                 break;
             case 'randomink':
-                randomColor = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+                randomColor = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.random()})`;
                 e.target.style.backgroundColor = randomColor;
+                break;
+            case 'darkening':
+                let currentColor = e.target.style.backgroundColor;
+                let regex = /, \d\.?\d*\)/gm;
+                let currentDarkness = String(currentColor.match(regex));
+                console.log(currentDarkness);
+                let newDarkness = +currentDarkness.slice(2, -1);
+                if (newDarkness <= .9) newDarkness += .1;
+                console.log(currentDarkness);
+                console.log(newDarkness);
+                e.target.style.backgroundColor = currentColor.slice(0, -currentDarkness.length) + ', ' + newDarkness + ')';
+                console.log(e.target.style.backgroundColor);
                 break;
             case 'eraser':                
                 e.target.style.backgroundColor = '';
@@ -92,6 +105,12 @@ randomizer.addEventListener('click', () => {
     drawMode = 'randomink';
 });
 
+const darkening = document.querySelector('#darkening');
+
+darkening.addEventListener('click', () => {
+    drawMode = 'darkening';
+});
+
 const eraseButton = document.querySelector('#eraser');
 
 eraseButton.addEventListener('click', () => {
@@ -114,7 +133,7 @@ clearButton.addEventListener('click', clear);
 function clear() {
     const drawDivs = document.querySelectorAll('.drawdiv');
     drawDivs.forEach(div => {
-        div.style.backgroundColor = '';
+        div.style.backgroundColor = `rgba(${0}, ${0}, ${0}, ${0.0})`;
     })
 }
 
@@ -123,7 +142,6 @@ function toggleDraw(e) {
         drawToggle = 'off';
     } else if (drawToggle === 'off') {
         drawToggle = 'on';
-        
     };
 }
     
