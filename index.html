@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="styles.css">
     <script src="javascript.js" defer></script>
 </head>
@@ -11,13 +11,36 @@
 
     <h1>Etch-a-Sketch</h1>
 
-    <p>Hover over the grid to draw a picture. Click to stop adding ink and finish the art. Press the clear button to clear your image and start a new drawing.</p>
+    <p>Hover over the grid to draw a picture. Click to stop adding ink. Click again on the grid to start adding more ink. Use the buttons below the grid to change color or erase. Press the clear button to clear your image and start a new drawing.</p>
+    
+    <div id="gameboard">
 
-    <button id="userSize">Choose Grid Size</button>
+        <div id="grid"></div>
 
-    <div id="grid"></div>
 
-    <button id="clear">Clear</button>
+        <div id="sidebar">
+
+            <button id="userSize">Choose Grid Size</button>
+            
+            <div id="toolbar">
+                <button id="black">Black</button>
+                <button id="red">Red</button>
+                <button id="green">Green</button>
+                <button id="blue">Blue</button>
+                <button id="random">Random Color</button>
+                <button id="eraser">Eraser</button>
+                <button id="clear">Clear</button>
+            </div>
+
+            <div>
+                <h3>Current Color: <span id="currentColor"></span></h3>
+
+                <h3>Ink mode: <span id="inkmode"></span></h3>
+            </div>
+
+        </div>
+
+    </div>
     
 </body>
 </html>

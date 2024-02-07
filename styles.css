@@ -2,18 +2,37 @@
     box-sizing: border-box;
 }
 
+#grid {
+    border: 15px solid rgb(54, 54, 54);
+    border-radius: 10px;
+    width: 640px;
+    border-bottom: 60px solid rgb(54, 54, 54);
+}
+
 #grid div {
-    border: 1px solid black;
-    height: 40px;
-    width: 40px;
+    border: 1px solid rgb(182, 182, 182);
 }
 
-#userSize {
-    margin-bottom: 30px;
-    float: right;
+#gameboard {
+    display: flex;
 }
 
-#clear {
-    margin-top: 30px;
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    height: 640px;
+    justify-content: space-between;
+    width: 320px;
+}
+
+#toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#toolbar button {
+    width: 130px;
 }
 
