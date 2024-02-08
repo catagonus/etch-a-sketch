@@ -1,12 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&family=VT323&family=Workbench&display=swap');
+
 * {
     box-sizing: border-box;
 }
 
+h1 {
+    font-family: 'Workbench';
+    font-weight: normal;
+    text-align: center;
+    font-size: 5em;
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+
+p {
+    font-family: 'Space Mono';
+}
+
+button {
+    border: none;
+    background-color: black;
+    color: white;
+    font-family: 'VT323';
+    font-size: 2em;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+}
+
 #grid {
-    border: 15px solid rgb(54, 54, 54);
+    border: 15px solid rgb(255, 0, 0);
     border-radius: 10px;
     width: 640px;
-    border-bottom: 60px solid rgb(54, 54, 54);
+    border-bottom: 60px solid rgb(255, 0, 0);
+    box-shadow: 2px 5px .5em .2em gray;
 }
 
 #grid div {
@@ -30,6 +59,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 3px;
 }
 
 #toolbar button {

@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etch-a-Sketch</title>
+    <title>Pixel Draw</title>
     <link rel="stylesheet" href="styles.css">
     <script src="javascript.js" defer></script>
 </head>
 <body>
 
-    <h1>Etch-a-Sketch</h1>
+    <h1>Pixel Draw</h1>
 
-    <p>Hover over the grid to draw a picture. Click to stop adding ink. Click again on the grid to start adding more ink. Use the buttons below the grid to change color or erase. Press the clear button to clear your image and start a new drawing.</p>
+    <p>Click within the grid to toggle the pen.</p>
     
     <div id="gameboard">
 
@@ -31,12 +31,6 @@
                 <button id="darkening">Darkening</button>
                 <button id="eraser">Eraser</button>
                 <button id="clear">Clear</button>
-            </div>
-
-            <div>
-                <h3>Current Color: <span id="currentColor"></span></h3>
-
-                <h3>Ink mode: <span id="inkmode"></span></h3>
             </div>
 
         </div>

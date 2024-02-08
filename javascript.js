@@ -36,6 +36,21 @@ function drawGrid(size) {
     })
 }
 
+const userSizeButton = document.querySelector('#userSize');
+
+function makeUserGrid() {
+    let userInputSize = prompt('Enter a grid size 1-100.');
+    if (userInputSize >=1 && userInputSize <=100) {
+        drawGrid(userInputSize);
+    } else {
+        alert('Please only enter an integer between 1 and 100.');
+        makeUserGrid();
+    }
+}
+
+userSizeButton.addEventListener('click', makeUserGrid);
+
+
 function draw(e) {
     if (drawToggle === 'on') {
         switch(drawMode) {
@@ -117,15 +132,6 @@ eraseButton.addEventListener('click', () => {
     drawMode = 'eraser';
 });
 
-const userSizeButton = document.querySelector('#userSize');
-
-function makeUserGrid() {
-    let userInputSize = prompt('Enter a grid size 1-100.');
-    drawGrid(userInputSize);
-}
-
-userSizeButton.addEventListener('click', makeUserGrid);
-
 const clearButton = document.querySelector('#clear');
     
 clearButton.addEventListener('click', clear);
@@ -144,9 +150,3 @@ function toggleDraw(e) {
         drawToggle = 'on';
     };
 }
-    
-
-
-
-
-
