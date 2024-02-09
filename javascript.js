@@ -55,16 +55,16 @@ function draw(e) {
     if (drawToggle === 'on') {
         switch(drawMode) {
             case 'blackink':
-                e.target.style.backgroundColor = `rgba(${0}, ${0}, ${0}, ${1.0})`;
+                e.target.style.backgroundColor = `rgba(0, 0, 0, .99)`;
                 break;
             case 'redink':
-                e.target.style.backgroundColor = `rgba(${255}, ${0}, ${0}, ${1.0})`;
+                e.target.style.backgroundColor = 'rgba(255, 0, 0, .99)';
                 break;
             case 'greenink':                
-                e.target.style.backgroundColor = `rgba(${0}, ${255}, ${0}, ${1.0})`;
+                e.target.style.backgroundColor = `rgba(0, 255, 0, .99)`;
                 break;
             case 'blueink':                
-                e.target.style.backgroundColor = `rgba(${0}, ${0}, ${255}, ${1.0})`;
+                e.target.style.backgroundColor = `rgba(0, 0, 255, .99)`;
                 break;
             case 'randomink':
                 randomColor = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.random()})`;
@@ -72,15 +72,20 @@ function draw(e) {
                 break;
             case 'darkening':
                 let currentColor = e.target.style.backgroundColor;
-                let regex = /, \d\.?\d*\)/gm;
-                let currentDarkness = String(currentColor.match(regex));
-                console.log(currentDarkness);
-                let newDarkness = +currentDarkness.slice(2, -1);
-                if (newDarkness <= .9) newDarkness += .1;
-                console.log(currentDarkness);
-                console.log(newDarkness);
-                e.target.style.backgroundColor = currentColor.slice(0, -currentDarkness.length) + ', ' + newDarkness + ')';
-                console.log(e.target.style.backgroundColor);
+                let tempcc = currentColor.slice(5, -1);
+                let ccvalues = tempcc.split(', ');
+                for (let i = 0; i < ccvalues.length-1; i++) {
+                    if (ccvalues[i] >= 25) {
+                        ccvalues[i] -= 25;
+                    } else {
+                        ccvalues[i] = 0;
+                    }
+                }
+                if (ccvalues[3] <=.9) {
+                    ccvalues[3] = +ccvalues[3] + .1;
+                } 
+                let newccvalue = ccvalues.join(', ');
+                e.target.style.backgroundColor = `rgba(${newccvalue})`;
                 break;
             case 'eraser':                
                 e.target.style.backgroundColor = '';
