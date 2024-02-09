@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 h1 {
     font-family: 'Workbench';
     font-weight: normal;
@@ -15,6 +16,7 @@ h1 {
 
 p {
     font-family: 'Space Mono';
+    text-align: center;
 }
 
 button {
@@ -28,6 +30,11 @@ button {
 button:hover {
     background-color: white;
     color: black;
+}
+
+#center {
+    display: flex;
+    margin: 0 auto;
 }
 
 #grid {
